@@ -1,62 +1,70 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../context/AuthProvider";
+import { useContext } from "react";
+import { FaUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+
   const menuItems = (
     <React.Fragment>
       <li>
         <Link to="/">Home</Link>
       </li>
       <li>
-        <Link to="/appointment">Appointment</Link>
+        <Link to="/">Profile</Link>
       </li>
       <li>
-        <Link to="/">About</Link>
-      </li>
-      <li>
-        <Link to="/login">Login</Link>
+        <Link to="/">Blog</Link>
       </li>
 
-      <div className="dropdown dropdown-bottom">
-        <label tabIndex={0}>
-          <div className="avatar ml-6">
-            <div className="w-12  rounded-full ring ring-secondary ring-offset-base-100 ring-offset-2">
-              <img src="https://placeimg.com/192/192/people" />
-            </div>
-          </div>
-        </label>
-        <ul
-          tabIndex={0}
-          className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
-        >
-          <li>
-            <a>Item 1</a>
-          </li>
-          <li>
-            <a>Item 2</a>
-          </li>
-        </ul>
-      </div>
-
-      {/* {user?.uid ? (
+      {user?.uid ? (
         <>
           <li>
             <Link to="/dashboard">Dashboard</Link>
           </li>
           <li>
-            <button>Sign Out</button>
+            <button onClick={logOut}>Sign Out</button>
           </li>
+          <div className="dropdown dropdown-bottom">
+            <label tabIndex={0}>
+              <div className="avatar ml-6">
+                <div className="w-10 mt-2  rounded-full ring ring-secondary ring-offset-base-100 ring-offset-2">
+                  <img src={user?.photoURL} alt="" />
+                </div>
+              </div>
+            </label>
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <a>Item 1</a>
+              </li>
+              <li>
+                <a>Item 2</a>
+              </li>
+            </ul>
+          </div>
         </>
       ) : (
-        <li>
-          <Link to="/login">Login</Link>
-        </li>
-      )} */}
+        <>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+          <li>
+            <Link to="/login" className="text-3xl ">
+              <FaUserCircle />
+            </Link>
+          </li>
+        </>
+      )}
     </React.Fragment>
   );
 
   return (
-    <div className="w-full bg-yellow-300 sticky top-0 ">
+    <div className="w-full bg-yellow-300 ">
       <div className="navbar py-5 max-w-[1440px] mx-auto flex justify-between ">
         <div className="navbar-start">
           <div className="dropdown">
