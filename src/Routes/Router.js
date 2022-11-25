@@ -38,7 +38,7 @@ export const router = createBrowserRouter([
       {
         path: "/categoryUsed/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/categoryUsed/${params.phone_id}`),
+          fetch(`http://localhost:5000/categoryUsed/${params.id}`),
         element: <CategoryUsed></CategoryUsed>,
       },
     ],
