@@ -2,7 +2,7 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 
-const AllSellers = () => {
+const AdminPage = () => {
   const {
     data: users = [],
     isLoading,
@@ -88,4 +88,4 @@ const AllSellers = () => {
   );
 };
 
-export default AllSellers;
+export default AdminPage;

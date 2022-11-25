@@ -21,7 +21,9 @@ const Header = () => {
               excepturi exercitationem quasi. In deleniti eaque aut repudiandae
               et a id nisi.
             </p>
-            <button className="btn btn-primary">Get Started</button>
+            <button className="btn btn-primary">
+              <a href="#category">Buy now</a>
+            </button>
           </div>
         </div>
       </div>

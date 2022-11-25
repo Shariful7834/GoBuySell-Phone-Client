@@ -2,15 +2,15 @@ import React from "react";
 import { AuthContext } from "../context/AuthProvider";
 import { useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import useAdmin from "../hooks/useAdmin";
+import useSeller from "../hooks/useSeller";
 
-const AdminRouter = ({ children }) => {
+const SellerRouter = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
 
   let location = useLocation();
-  const [isAdmin, isAdminLoading] = useAdmin(user?.email);
+  const [isSeller, isSellerLoading] = useSeller(user?.email);
 
-  if (loading || isAdminLoading) {
+  if (loading || isSellerLoading) {
     return (
       <button type="button" className="bg-indigo-500 ..." disabled>
         <svg
@@ -22,10 +22,10 @@ const AdminRouter = ({ children }) => {
     );
   }
 
-  if (user && user.uid && isAdmin) {
+  if (user && user.uid && isSeller) {
     return children;
   }
   return <Navigate to="/login" state={{ from: location }} replace />;
 };
 
-export default AdminRouter;
+export default SellerRouter;

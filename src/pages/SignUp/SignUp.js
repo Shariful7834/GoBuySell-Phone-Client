@@ -142,9 +142,6 @@ const SignUp = () => {
                 {errors.password?.message}
               </p>
             )}
-            <label className="label">
-              <span className="label-text">Forget password?</span>
-            </label>
           </div>
           <div className="form-control w-full max-w-xs ">
             <label className="label">
