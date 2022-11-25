@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 const Categories = ({ category }) => {
   const { id, name, image_url } = category;
   return (
-    <div className="hover:bg-zinc-300 p-10">
+    <div
+      data-aos="zoom-out-up"
+      data-aos-duration="1500"
+      className="hover:bg-zinc-300 p-10"
+    >
       <Link to={`/categoryUsed/${id}`}>
         <button className="w-[135px] h-[135px]">
           <span>
