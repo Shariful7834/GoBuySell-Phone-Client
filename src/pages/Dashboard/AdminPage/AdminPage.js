@@ -10,7 +10,7 @@ const AdminPage = () => {
   } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/users");
+      const res = await fetch(`http://localhost:5000/users?userrole`);
       const data = await res.json();
       return data;
     },

@@ -5,7 +5,7 @@ import Categories from "./Categories";
 
 const ProductCategories = () => {
   const { data: categories = [], isLoading } = useQuery({
-    queryKey: "categories",
+    queryKey: ["categories"],
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/categories");
       const data = await res.json();
@@ -14,7 +14,7 @@ const ProductCategories = () => {
   });
 
   if (isLoading) {
-    return <LoadingCircle></LoadingCircle>
+    return <LoadingCircle></LoadingCircle>;
   }
   return (
     <div className="w-full">

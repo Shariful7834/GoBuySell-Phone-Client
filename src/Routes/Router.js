@@ -48,12 +48,20 @@ export const router = createBrowserRouter([
     element: <DashboardLayout></DashboardLayout>,
     children: [
       {
-        path: "/dashboard/myorders",
-        element: <MyOrders></MyOrders>,
+        path: "/dashboard",
+        element: (
+          <PrivateRouter>
+            <MyOrders></MyOrders>
+          </PrivateRouter>
+        ),
       },
       {
         path: "/dashboard/myorders",
-        element: <MyOrders></MyOrders>,
+        element: (
+          <BuyerRouter>
+            <MyOrders></MyOrders>
+          </BuyerRouter>
+        ),
       },
       {
         path: "/dashboard/admin",
@@ -65,26 +73,26 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/addproducts",
-        element: <AddProducts></AddProducts>,
+        element: (
+          <SellerRouter>
+            <AddProducts></AddProducts>
+          </SellerRouter>
+        ),
       },
       {
         path: "/dashboard/myproducts",
         element: (
-          <PrivateRouter>
-            <SellerRouter>
-              <MyProducts></MyProducts>
-            </SellerRouter>
-          </PrivateRouter>
+          <SellerRouter>
+            <MyProducts></MyProducts>
+          </SellerRouter>
         ),
       },
       {
         path: "/dashboard/mybuyers",
         element: (
-          <PrivateRouter>
-            <SellerRouter>
-              <MyBuyers></MyBuyers>
-            </SellerRouter>
-          </PrivateRouter>
+          <SellerRouter>
+            <MyBuyers></MyBuyers>
+          </SellerRouter>
         ),
       },
     ],
