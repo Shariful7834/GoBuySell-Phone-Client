@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 
 const AddProducts = () => {
   const [errorSignUp, setErrorSignUp] = useState("");
-  const imageHostKey = process.env.REACT_APP_imageHost_Secret;
+  const imageHostKey = "048fbcb6a19131be8c7ec5613c2b30bf";
 
   // for private route authentication
   let navigate = useNavigate();
@@ -32,27 +32,31 @@ const AddProducts = () => {
     })
       .then((res) => res.json())
       .then((imgData) => {
-        // console.log(imgData);
+        console.log(imgData);
         if (imgData.success) {
           console.log(imgData.data.url);
-          const doctors = {
-            name: data.name,
-            email: data.email,
-            specialty: data.specialty,
+          const addproducts = {
+            product_name: data.Product_name,
+            price: data.price,
+            condition: data.condition,
+            Location: data.Location,
+            Phone_category: data.Phone_category,
+            Resale_price: data.Resale_price,
+            details: data.details,
             image: imgData.data.url,
           };
-          fetch("http://localhost:5000/addProduct", {
+          fetch("http://localhost:5000/addproducts", {
             method: "POST",
             headers: {
               "content-type": "application/json",
             },
-            body: JSON.stringify(doctors),
+            body: JSON.stringify(addproducts),
           })
             .then((res) => res.json())
             .then((result) => {
               console.log(result);
-              toast.success(`Doctor ${data.name} added successfully`);
-              navigate("/dashboard/managedoctors");
+              toast.success(`Product added successfully`);
+              navigate("/dashboard/myproducts");
             });
         }
       });
@@ -176,6 +180,11 @@ const AddProducts = () => {
                 className="input input-bordered w-full mr-2"
               />
             </div>
+            <input
+              type="file"
+              {...register("image", { required: "Required field" })}
+              className="file-input file-input-bordered w-full  mt-3"
+            />
             <div className="form-control w-full mr-2">
               <label className="label">
                 <span className="label-text">Description</span>
