@@ -68,7 +68,7 @@ const AdminPage = () => {
           <tr>
             <th></th>
             <th>Name</th>
-            <th>Email</th>
+            <th>User Status</th>
             <th>Admin</th>
             <th>Delete</th>
           </tr>
@@ -78,7 +78,7 @@ const AdminPage = () => {
             <tr key={user._id}>
               <th>{i + 1}</th>
               <td>{user.name}</td>
-              <td>{user.email}</td>
+              <td>{user.userrole}</td>
               <td>
                 {user.role !== "admin" && (
                   <button

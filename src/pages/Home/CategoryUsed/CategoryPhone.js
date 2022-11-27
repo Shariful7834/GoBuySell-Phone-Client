@@ -46,7 +46,7 @@ const CategoryPhone = ({ category, SetProductInfo }) => {
             <label
               htmlFor="booking-modal"
               onClick={() => SetProductInfo(category)}
-              className="btn btn-primary  text-white"
+              className="btn btn-accent  text-white"
             >
               Booking now
             </label>

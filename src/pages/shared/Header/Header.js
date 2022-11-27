@@ -17,13 +17,16 @@ const Header = () => {
               Used Phones <br /> For Everyone
             </h1>
             <p className="mb-5">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
+              Would you like to buy used electronics to protect your wallet and
+              the environment? At Janado you are at the right address! We are
+              your shop for used tablets, refurbished smartphones or second-hand
+              Apple Watch.
             </p>
 
-            <button className="btn btn-outline btn-warning w-36">
-              <a href="#category">Buy now</a>
+            <button className="btn bg-warning w-36 border-0">
+              <a className=" font-semibold" href="#category">
+                Buy now
+              </a>
             </button>
           </div>
         </div>
