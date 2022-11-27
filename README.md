@@ -7,8 +7,8 @@
 
 ## Admin Info
 ```
-Email: user@tech.com
-Password: Tech1234
+Email: mdislam@gmail.com
+Password: Mislam@gmail.com
 ```
 ## Website Features
 - Dynamic website
