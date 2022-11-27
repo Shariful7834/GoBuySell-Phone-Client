@@ -33,6 +33,13 @@ const SignUp = () => {
     //navigate("/");
   }
 
+  const [socialMediaUserEmail, setSocialMediaUserEmail] = useState("");
+  const [googleToken] = useToken(socialMediaUserEmail);
+
+  if (googleToken) {
+    navigate(from, { replace: true });
+  }
+
   // signup function
   const handleSignUp = (data) => {
     createUser(data.email, data.password)
@@ -68,7 +75,8 @@ const SignUp = () => {
         userrole = "Buyer";
         email = user?.email;
         saveUser(user?.displayName, email, userrole);
-        navigate("/");
+        setSocialMediaUserEmail(email);
+        // navigate("/");
         toast.success("Loged In successfully");
       })
       .catch((error) => console.log(error));

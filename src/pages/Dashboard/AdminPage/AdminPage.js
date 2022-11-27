@@ -43,6 +43,23 @@ const AdminPage = () => {
         }
       });
   };
+
+  const deleteHandler = (user) => {
+    fetch(`http://localhost:5000/users/${user._id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          toast.success("Deleted successful");
+          refetch();
+        }
+      });
+    console.log(user);
+  };
   return (
     <div>
       <h1 className="text-2xl text-center mt-10">all users page</h1>
@@ -71,10 +88,13 @@ const AdminPage = () => {
                     Make Admin
                   </button>
                 )}
+                {user.role === "admin" && (
+                  <span className="text-success font-bold">Admin</span>
+                )}
               </td>
               <td>
                 <button
-                  // onClick={() => handleDelete(user._id)}
+                  onClick={() => deleteHandler(user)}
                   className="btn btn-error"
                 >
                   Delete

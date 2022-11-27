@@ -27,6 +27,14 @@ const Login = () => {
     navigate("/");
   }
 
+  // social media
+  const [socialMediaUserEmail, setSocialMediaUserEmail] = useState("");
+  const [googleToken] = useToken(socialMediaUserEmail);
+
+  if (googleToken) {
+    navigate(from, { replace: true });
+  }
+
   // react form hook
   const {
     register,
@@ -50,16 +58,38 @@ const Login = () => {
       });
     console.log(data);
   };
-  const handleGoogle = () => {
+  const handleGoogle = (userrole, email) => {
     googleSignIn()
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate(from, { replace: true });
+        // navigate(from, { replace: true });
+        userrole = "Buyer";
+        email = user?.email;
+        // saveUser(user?.displayName, email, userrole);
+        setSocialMediaUserEmail(email);
+        // navigate("/");
         toast.success("Loged In successfully");
       })
       .catch((error) => console.log(error));
   };
+
+  // const saveUser = (name, email, userrole) => {
+  //   const user = { name, email, userrole };
+  //   fetch("http://localhost:5000/users", {
+  //     method: "POST",
+  //     headers: {
+  //       "content-type": "application/json",
+  //     },
+  //     body: JSON.stringify(user),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+
+  //       navigate(from, { replace: true });
+  //     });
+  // };
   return (
     <div className="h-[880px] flex justify-center items-center">
       <div className="w-96 p-7 border-2 rounded-xl shadow-2xl">
@@ -105,21 +135,6 @@ const Login = () => {
               <span className="label-text">Forget password?</span>
             </label>
           </div>
-          {/* <div className="form-control w-full max-w-xs ">
-            <label className="label">
-              <span className="label-text font-semibold">
-                Buyer or Seller ?
-              </span>
-            </label>
-            <select
-              defaultValue={`buyer`}
-              {...register("buyerorseller")}
-              className="select select-bordered w-full max-w-xs"
-            >
-              <option selected>Buyer</option>
-              <option>Seller</option>
-            </select>
-          </div> */}
 
           <p className="text-red-600 font-semibold">{signInError}</p>
           <input className="btn btn-accent mt-5 w-full" type="submit" />

@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../layout/DashboardLayout";
 import Main from "../layout/Main";
 import NotFound from "../NotFound/NotFound";
+import Blogs from "../pages/Blogs/Blogs";
 
 import AdminPage from "../pages/Dashboard/AdminPage/AdminPage";
 
@@ -48,6 +49,10 @@ export const router = createBrowserRouter([
             <CategoryUsed></CategoryUsed>
           </PrivateRouter>
         ),
+      },
+      {
+        path: "/blogs",
+        element: <Blogs></Blogs>,
       },
     ],
   },
