@@ -20,6 +20,7 @@ const BookingModal = ({ productInfo, SetProductInfo }) => {
 
     const buyerBookingItem = {
       Product_name,
+      name: user?.displayName,
       image_url,
       price: price,
       email: user?.email,

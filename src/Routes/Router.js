@@ -5,6 +5,7 @@ import Main from "../layout/Main";
 import AdminPage from "../pages/Dashboard/AdminPage/AdminPage";
 
 import MyOrders from "../pages/Dashboard/BuyerPage/MyOrders";
+import Payment from "../pages/Dashboard/Payment/Payment";
 
 import AddProducts from "../pages/Dashboard/SellerPage/AddProducts/AddProducts";
 import MyBuyers from "../pages/Dashboard/SellerPage/MyBuyers/MyBuyers";
@@ -12,6 +13,7 @@ import MyProducts from "../pages/Dashboard/SellerPage/MyProducts/MyProducts";
 import CategoryUsed from "../pages/Home/CategoryUsed/CategoryUsed";
 import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login";
+import DisplayError from "../pages/shared/DisplayError/DisplayError";
 import SignUp from "../pages/SignUp/SignUp";
 import AdminRouter from "./AdminRouter";
 import BuyerRouter from "./BuyerRouter";
@@ -46,6 +48,7 @@ export const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <DashboardLayout></DashboardLayout>,
+    errorElement: <DisplayError></DisplayError>,
     children: [
       {
         path: "/dashboard",
@@ -94,6 +97,16 @@ export const router = createBrowserRouter([
             <MyBuyers></MyBuyers>
           </SellerRouter>
         ),
+      },
+      {
+        path: "/dashboard/payment/:id",
+        element: (
+          <PrivateRouter>
+            <Payment></Payment>
+          </PrivateRouter>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/buyerorders/${params.id}`),
       },
     ],
   },

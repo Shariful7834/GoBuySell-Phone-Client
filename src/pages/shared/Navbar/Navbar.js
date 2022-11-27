@@ -30,7 +30,7 @@ const Navbar = () => {
           <div className="dropdown dropdown-bottom">
             <label tabIndex={0}>
               <div className="avatar ml-6">
-                <div className="w-10 mt-2  rounded-full ring ring-secondary ring-offset-base-100 ring-offset-2">
+                <div className="w-8 mt-2  rounded-full ring ring-error ring-offset-base-100 ring-offset-2">
                   <img src={user?.photoURL} alt="" />
                 </div>
               </div>
@@ -39,11 +39,9 @@ const Navbar = () => {
               tabIndex={0}
               className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
             >
+              <li>{user?.displayName}</li>
               <li>
-                <a>Item 1</a>
-              </li>
-              <li>
-                <a>Item 2</a>
+                <Link onClick={logOut}>Sign Out</Link>
               </li>
             </ul>
           </div>

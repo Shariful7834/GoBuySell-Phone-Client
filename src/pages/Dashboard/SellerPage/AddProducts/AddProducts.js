@@ -2,12 +2,14 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import toast from "react-hot-toast";
+import { AuthContext } from "../../../../context/AuthProvider";
 
 const AddProducts = () => {
   const [errorSignUp, setErrorSignUp] = useState("");
   const imageHostKey = "048fbcb6a19131be8c7ec5613c2b30bf";
+  const { user } = useContext(AuthContext);
 
   // for private route authentication
   let navigate = useNavigate();
@@ -36,6 +38,7 @@ const AddProducts = () => {
         if (imgData.success) {
           console.log(imgData.data.url);
           const addproducts = {
+            email: user?.email,
             product_name: data.Product_name,
             price: data.price,
             condition: data.condition,

@@ -2,6 +2,7 @@ import { async } from "@firebase/util";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import LoadingRipple from "../../../components/LoadingRipple/LoadingRipple";
 import { AuthContext } from "../../../context/AuthProvider";
 
@@ -62,14 +63,16 @@ const MyOrders = () => {
                 </td>
                 <td>{order.price}</td>
 
-                <th>
-                  <label
-                    htmlFor="ConfirmationModal"
-                    className="btn btn-error btn-xs"
-                  >
-                    Pay
-                  </label>
-                </th>
+                <td>
+                  {order.price && !order.paid && (
+                    <Link to={`/dashboard/payment/${order._id}`}>
+                      <button className="btn btn-accent">Pay</button>
+                    </Link>
+                  )}
+                  {order.price && order.paid && (
+                    <span className="text-green-600 font-bold">Paid</span>
+                  )}
+                </td>
               </tr>
             ))}
           </tbody>

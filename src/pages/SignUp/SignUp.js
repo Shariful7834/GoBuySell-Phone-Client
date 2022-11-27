@@ -27,8 +27,8 @@ const SignUp = () => {
   const [token] = useToken(createdUserEmail);
 
   if (token) {
-    // navigate(from, { replace: true });
-    navigate("/");
+    navigate(from, { replace: true });
+    //navigate("/");
   }
 
   // signup function
@@ -63,6 +63,7 @@ const SignUp = () => {
         const user = result.user;
         console.log(user);
         // navigate(from, { replace: true });
+        saveUser(user?.name, user?.email, user?.userrole);
         navigate("/");
         toast.success("Loged In successfully");
       })
@@ -89,7 +90,7 @@ const SignUp = () => {
   return (
     <div className="h-[880px] flex justify-center items-center">
       <div className="w-96 p-7 border-2 rounded-xl shadow-2xl">
-        <h2 className="text-2xl text-center">Login</h2>
+        <h2 className="text-2xl text-center">Sign Up</h2>
         <form onSubmit={handleSubmit(handleSignUp)}>
           <div className="form-control w-full max-w-xs">
             <label className="label">
@@ -173,7 +174,10 @@ const SignUp = () => {
         </p>
         <div className="divider">OR</div>
         <div>
-          <button className="hover:bg-accent-100 btn-outline btn-accent duration-200 shadow space-x-2 rounded-md flex items-center p-2 w-full justify-center">
+          <button
+            onClick={handleGoogle}
+            className="hover:bg-accent-100 btn-outline btn-accent duration-200 shadow space-x-2 rounded-md flex items-center p-2 w-full justify-center"
+          >
             <FcGoogle className="text-3xl" />
             <span className="text-black">Continue with Google</span>
           </button>

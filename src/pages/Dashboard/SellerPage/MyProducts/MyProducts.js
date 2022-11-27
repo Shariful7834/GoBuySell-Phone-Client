@@ -1,12 +1,25 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useContext, useState } from "react";
+import toast from "react-hot-toast";
 import LoadingRipple from "../../../../components/LoadingRipple/LoadingRipple";
+import { AuthContext } from "../../../../context/AuthProvider";
+import ConfirmationModal from "../../../shared/ConfirmationModal/ConfirmationModal";
 
 const MyProducts = () => {
-  const { data: myproducts = [], isLoading } = useQuery({
-    queryKey: ["myproducts"],
+  const [deletingProduct, setDeletingProduct] = useState(null);
+  const [products, setMyProducts] = useState([]);
+
+  const { user } = useContext(AuthContext);
+  const {
+    data: myproducts = [],
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["myproducts", user?.email],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/myproducts");
+      const res = await fetch(
+        `http://localhost:5000/myproducts?email=${user?.email}`
+      );
       const data = await res.json();
       return data;
     },
@@ -14,6 +27,55 @@ const MyProducts = () => {
   if (isLoading) {
     return <LoadingRipple></LoadingRipple>;
   }
+  const closeModal = () => {
+    setDeletingProduct(null);
+  };
+  const deleteHandler = (product) => {
+    fetch(`http://localhost:5000/manageproducts/${product._id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          toast.success("Deleted successful");
+          refetch();
+        }
+      });
+    console.log(product);
+  };
+
+  // Update
+  const handleUpdate = (product) => {
+    fetch(`http://localhost:5000/manageproducts/${product._id}`, {
+      method: "PATCH",
+      Headers: {
+        "Content-Type": "application/json",
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: JSON.stringify({ status: "Sold" }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        // const proceed = window.confirm('Product Updated Successfully')
+        toast.success("Product Updated Successfully");
+        if (data.modifiedCount > 0) {
+          const remaining = myproducts.filter(
+            (product) => product._id !== product.id
+          );
+          const approving = myproducts.find(
+            (product) => product._id === product.id
+          );
+          approving.status = "Sold";
+          const newProducts = [approving, ...remaining];
+          setMyProducts(newProducts);
+        }
+      })
+      .catch((error) => console.error(error));
+  };
 
   return (
     <div>
@@ -57,16 +119,17 @@ const MyProducts = () => {
                 <td>{product.price}</td>
 
                 <th>
-                  <label
-                    htmlFor="ConfirmationModal"
+                  <button
+                    onClick={() => handleUpdate(product)}
                     className="btn btn-accent btn-xs"
                   >
-                    Available
-                  </label>
+                    {product.status ? product.status : "Available"}
+                  </button>
                 </th>
                 <th>
                   <label
                     htmlFor="ConfirmationModal"
+                    onClick={() => setDeletingProduct(product)}
                     className="btn btn-error btn-xs"
                   >
                     Delete
@@ -85,15 +148,15 @@ const MyProducts = () => {
           </tbody>
         </table>
       </div>
-      {/* {deletingDoctor && (
+      {deletingProduct && (
         <ConfirmationModal
           title={`Do you want to delete?`}
-          message={`if you delete, ${deletingDoctor.name}  you cannot be able to undone`}
+          message={`if you delete, ${deletingProduct.product_name}  you cannot be able to undone`}
           closeModal={closeModal}
           successAction={deleteHandler}
-          modalData={deletingDoctor}
+          modalData={deletingProduct}
         ></ConfirmationModal>
-      )} */}
+      )}
     </div>
   );
 };
