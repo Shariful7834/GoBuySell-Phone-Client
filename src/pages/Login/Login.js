@@ -6,11 +6,12 @@ import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../context/AuthProvider";
 import useToken from "../../hooks/useToken";
 import { toast } from "react-hot-toast";
+import useTitle from "../../hooks/useTitle";
 
 const Login = () => {
   // get user context
   const { userLogIn, googleSignIn } = useContext(AuthContext);
-
+  useTitle("Login");
   // use states
   const [signInError, SetSignInError] = useState("");
   let navigate = useNavigate();

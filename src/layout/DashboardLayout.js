@@ -4,12 +4,15 @@ import { AuthContext } from "../context/AuthProvider";
 import useAdmin from "../hooks/useAdmin";
 import useBuyer from "../hooks/useBuyer";
 import useSeller from "../hooks/useSeller";
+import useTitle from "../hooks/useTitle";
 import Navbar from "../pages/shared/Navbar/Navbar";
 const DashboardLayout = () => {
   const { user } = useContext(AuthContext);
   const [isAdmin] = useAdmin(user?.email);
   const [isBuyer] = useBuyer(user?.email);
   const [isSeller] = useSeller(user?.email);
+
+  useTitle("Dashboard");
 
   return (
     <div className="sticky top-0">

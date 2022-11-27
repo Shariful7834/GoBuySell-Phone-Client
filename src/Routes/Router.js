@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../layout/DashboardLayout";
 import Main from "../layout/Main";
+import NotFound from "../NotFound/NotFound";
 
 import AdminPage from "../pages/Dashboard/AdminPage/AdminPage";
 
@@ -24,6 +25,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <NotFound></NotFound>,
     children: [
       {
         path: "/",
@@ -41,7 +43,11 @@ export const router = createBrowserRouter([
         path: "/categoryUsed/:id",
         loader: ({ params }) =>
           fetch(`http://localhost:5000/categoryUsed/${params.id}`),
-        element: <CategoryUsed></CategoryUsed>,
+        element: (
+          <PrivateRouter>
+            <CategoryUsed></CategoryUsed>
+          </PrivateRouter>
+        ),
       },
     ],
   },

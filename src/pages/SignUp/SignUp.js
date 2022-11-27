@@ -5,6 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../context/AuthProvider";
 import { toast } from "react-hot-toast";
 import useToken from "../../hooks/useToken";
+import useTitle from "../../hooks/useTitle";
 
 const SignUp = () => {
   const { createUser, googleSignIn, updateUserProfile } =
@@ -13,6 +14,7 @@ const SignUp = () => {
   const [errorSignUp, setErrorSignUp] = useState("");
   // for private route onluy
   // for private route authentication
+  useTitle("SignUp");
   let navigate = useNavigate();
   let location = useLocation();
   let from = location.state?.from?.pathname || "/";
@@ -57,13 +59,15 @@ const SignUp = () => {
     // console.log(data);
   };
 
-  const handleGoogle = () => {
+  const handleGoogle = (userrole, email) => {
     googleSignIn()
       .then((result) => {
         const user = result.user;
         console.log(user);
         // navigate(from, { replace: true });
-        saveUser(user?.name, user?.email, user?.userrole);
+        userrole = "Buyer";
+        email = user?.email;
+        saveUser(user?.displayName, email, userrole);
         navigate("/");
         toast.success("Loged In successfully");
       })
