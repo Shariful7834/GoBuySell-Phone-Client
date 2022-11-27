@@ -1,13 +1,11 @@
 # Used Products Resale Market
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## GoBuySell website link
-https://gobuysell-6197a.firebaseapp.com/
+### https://gobuysell-6197a.firebaseapp.com/
 ## GoBuySell Server Link 
-https://gobuysellphone-server.vercel.app/
+### https://gobuysellphone-server.vercel.app/
 
-### `npm start`
+## Admin Info
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
