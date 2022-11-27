@@ -2,9 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
-
-In the project directory, you can run:
+## GoBuySell website link
+https://gobuysell-6197a.firebaseapp.com/
+## GoBuySell Server Link 
+https://gobuysellphone-server.vercel.app/
 
 ### `npm start`
 
