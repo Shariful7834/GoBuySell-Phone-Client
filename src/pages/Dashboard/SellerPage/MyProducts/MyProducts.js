@@ -8,7 +8,10 @@ import ConfirmationModal from "../../../shared/ConfirmationModal/ConfirmationMod
 const MyProducts = () => {
   const [deletingProduct, setDeletingProduct] = useState(null);
   const [products, setMyProducts] = useState([]);
-
+  const [advertisements, setAdvertisements] = useState([]);
+  const { product_name, image, price, condition, Location, details } =
+    advertisements;
+  console.log(product_name, condition, details);
   const { user } = useContext(AuthContext);
   const {
     data: myproducts = [],
@@ -79,7 +82,27 @@ const MyProducts = () => {
 
   /// advertisement handler
 
-  const handleAdvertise = () => {};
+  const handleAdvertise = () => {
+    const advertisements = {
+      product_name,
+      image,
+      condition,
+      price,
+      Location,
+    };
+
+    fetch("http://localhost:5000/advertisements", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(advertisements),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
 
   return (
     <div>
@@ -143,7 +166,7 @@ const MyProducts = () => {
                   <label
                     htmlFor="ConfirmationModal"
                     className="btn btn-success btn-xs"
-                    onClick={handleAdvertise}
+                    onClick={() => setAdvertisements(product)}
                   >
                     Advertise
                   </label>
@@ -160,6 +183,16 @@ const MyProducts = () => {
           closeModal={closeModal}
           successAction={deleteHandler}
           modalData={deletingProduct}
+        ></ConfirmationModal>
+      )}
+
+      {advertisements && (
+        <ConfirmationModal
+          title={`Do you want to advertise this product?`}
+          message={`if you Confirm, ${advertisements.product_name}  will be display on home page`}
+          closeModal={closeModal}
+          successAction={handleAdvertise}
+          modalData={advertisements}
         ></ConfirmationModal>
       )}
     </div>
