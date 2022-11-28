@@ -12,7 +12,7 @@ const stripePromise = loadStripe(
 const Payment = () => {
   const orders = useLoaderData();
   const navigation = useNavigation();
-  const { Product_name, price, image_url } = orders;
+  const { product_name, price, image_url } = orders;
   if (navigation.state === "loading") {
     return <LoadingRipple></LoadingRipple>;
   }
@@ -22,7 +22,7 @@ const Payment = () => {
       <div className="card w-96 md:w-[600px] bg-base-100 shadow-xl">
         <div className="p-8 flex justify-between">
           <div>
-            <h2 className="card-title text-2xl">Pay for {Product_name}</h2>
+            <h2 className="card-title text-2xl">Pay for {product_name}</h2>
 
             <p>
               <span className="font-semibold">Total cost:</span> ${price}

@@ -59,7 +59,7 @@ const MyOrders = () => {
                 </td>
                 <td>
                   {" "}
-                  <div className="font-bold">{order.Product_name}</div>
+                  <div className="font-bold">{order.product_name}</div>
                 </td>
                 <td>{order.price}</td>
 

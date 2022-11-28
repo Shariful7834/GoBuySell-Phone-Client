@@ -9,8 +9,15 @@ const MyProducts = () => {
   const [deletingProduct, setDeletingProduct] = useState(null);
   const [products, setMyProducts] = useState([]);
   const [advertisements, setAdvertisements] = useState([]);
-  const { product_name, image, price, condition, Location, details } =
-    advertisements;
+  const {
+    product_name,
+    image,
+    Resale_price,
+    condition,
+    Location,
+    details,
+    price,
+  } = advertisements;
   console.log(product_name, condition, details);
   const { user } = useContext(AuthContext);
   const {
@@ -87,8 +94,9 @@ const MyProducts = () => {
       product_name,
       image,
       condition,
-      price,
+      Resale_price,
       Location,
+      price,
     };
 
     fetch("http://localhost:5000/advertisements", {
@@ -143,7 +151,7 @@ const MyProducts = () => {
                 <td>
                   <div className="font-bold">{product.product_name}</div>
                 </td>
-                <td>{product.price}</td>
+                <td>{product.Resale_price}</td>
 
                 <th>
                   <button
@@ -162,15 +170,22 @@ const MyProducts = () => {
                     Delete
                   </label>
                 </th>
-                <th>
-                  <label
-                    htmlFor="ConfirmationModal"
-                    className="btn btn-success btn-xs"
-                    onClick={() => setAdvertisements(product)}
-                  >
-                    Advertise
-                  </label>
-                </th>
+                {!product.advertisement && (
+                  <th>
+                    <label
+                      htmlFor="ConfirmationModal"
+                      className="btn btn-success btn-xs"
+                      onClick={() => setAdvertisements(product)}
+                    >
+                      Advertise
+                    </label>
+                  </th>
+                )}
+                {product.advertisement && (
+                  <span className="text-green-600 font-bold" disabled>
+                    Advertised
+                  </span>
+                )}
               </tr>
             ))}
           </tbody>
@@ -193,6 +208,7 @@ const MyProducts = () => {
           closeModal={closeModal}
           successAction={handleAdvertise}
           modalData={advertisements}
+          advertise={`Advertise`}
         ></ConfirmationModal>
       )}
     </div>

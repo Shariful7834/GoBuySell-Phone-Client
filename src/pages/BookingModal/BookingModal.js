@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 
 const BookingModal = ({ productInfo, SetProductInfo }) => {
   const { user } = useContext(AuthContext);
-  const { Product_name, Resale_price, image_url } = productInfo;
+  const { product_name, Resale_price, image_url } = productInfo;
 
   console.log();
 
@@ -19,7 +19,7 @@ const BookingModal = ({ productInfo, SetProductInfo }) => {
     console.log(name, price, phoneName, location);
 
     const buyerBookingItem = {
-      Product_name,
+      product_name,
       name: user?.displayName,
       image_url,
       price: price,
@@ -58,7 +58,7 @@ const BookingModal = ({ productInfo, SetProductInfo }) => {
           >
             ✕
           </label>
-          <h3 className="text-lg font-bold">{Product_name}</h3>
+          <h3 className="text-lg font-bold">{product_name}</h3>
           <form
             onSubmit={handleBooking}
             className="grid grid-cols-1 gap-4 mt-10"

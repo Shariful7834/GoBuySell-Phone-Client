@@ -5,7 +5,7 @@ import BookingModal from "../../BookingModal/BookingModal";
 const CategoryPhone = ({ category, SetProductInfo }) => {
   const {
     image_url,
-    Product_name,
+    product_name,
     Condition,
     Original_price,
     Location,
@@ -23,7 +23,7 @@ const CategoryPhone = ({ category, SetProductInfo }) => {
           <img src={image_url} alt="Phones" />
         </figure>
         <div className="card-body ">
-          <h2 className="text-2xl font-semibold">{Product_name}</h2>
+          <h2 className="text-2xl font-semibold">{product_name}</h2>
           <div className="space-y-0">
             <p className="text-lg font-semibold">Condition: {Condition}</p>
             <p className="text-lg font-semibold">
