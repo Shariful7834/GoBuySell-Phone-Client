@@ -5,6 +5,7 @@ import NotFound from "../NotFound/NotFound";
 import Blogs from "../pages/Blogs/Blogs";
 
 import AdminPage from "../pages/Dashboard/AdminPage/AdminPage";
+import ReportItems from "../pages/Dashboard/AdminPage/ReportItems";
 
 import MyOrders from "../pages/Dashboard/BuyerPage/MyOrders";
 import Payment from "../pages/Dashboard/Payment/Payment";
@@ -107,6 +108,14 @@ export const router = createBrowserRouter([
           <SellerRouter>
             <MyBuyers></MyBuyers>
           </SellerRouter>
+        ),
+      },
+      {
+        path: "/dashboard/reportitems",
+        element: (
+          <PrivateRouter>
+            <ReportItems></ReportItems>
+          </PrivateRouter>
         ),
       },
       {

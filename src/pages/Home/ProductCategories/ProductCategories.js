@@ -19,7 +19,7 @@ const ProductCategories = () => {
   return (
     <div id="category" className="w-full">
       <div className="container mx-auto text-center mt-5">
-        <h2 className="text-4xl font-bold my-20 text-green-300">
+        <h2 className="text-5xl font-bold my-20 text-black-300">
           Search or select a brand category
         </h2>
         <div className="divider"></div>

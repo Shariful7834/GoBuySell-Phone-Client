@@ -77,6 +77,10 @@ const MyProducts = () => {
       .catch((error) => console.error(error));
   };
 
+  /// advertisement handler
+
+  const handleAdvertise = () => {};
+
   return (
     <div>
       <h1 className="text-2xl font-bold"> My Products</h1>
@@ -139,6 +143,7 @@ const MyProducts = () => {
                   <label
                     htmlFor="ConfirmationModal"
                     className="btn btn-success btn-xs"
+                    onClick={handleAdvertise}
                   >
                     Advertise
                   </label>

@@ -44,6 +44,22 @@ const AdminPage = () => {
       });
   };
 
+  const verifyseller = (id) => {
+    fetch(`http://localhost:5000/users/seller/${id}`, {
+      method: "PUT",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          toast.success("Seller Verification successfull");
+          refetch();
+        }
+      });
+  };
+
   const deleteHandler = (user) => {
     fetch(`http://localhost:5000/users/${user._id}`, {
       method: "DELETE",
@@ -56,6 +72,8 @@ const AdminPage = () => {
         if (data.deletedCount > 0) {
           toast.success("Deleted successful");
           refetch();
+        } else {
+          toast.error("Unable to assign as Seller");
         }
       });
     console.log(user);
@@ -68,9 +86,11 @@ const AdminPage = () => {
           <tr>
             <th></th>
             <th>Name</th>
+            <th>Email</th>
             <th>User Status</th>
             <th>Admin</th>
             <th>Delete</th>
+            <th>Verify</th>
           </tr>
         </thead>
         <tbody>
@@ -78,6 +98,7 @@ const AdminPage = () => {
             <tr key={user._id}>
               <th>{i + 1}</th>
               <td>{user.name}</td>
+              <td>{user.email}</td>
               <td>{user.userrole}</td>
               <td>
                 {user.role !== "admin" && (
@@ -99,6 +120,19 @@ const AdminPage = () => {
                 >
                   Delete
                 </button>
+              </td>
+              <td>
+                {user.userrole !== "Seller" && (
+                  <button
+                    onClick={() => verifyseller(user._id)}
+                    className="btn btn-error"
+                  >
+                    Unverified
+                  </button>
+                )}
+                {user.userrole === "Seller" && (
+                  <span className="text-success font-bold">Verified</span>
+                )}
               </td>
             </tr>
           ))}
