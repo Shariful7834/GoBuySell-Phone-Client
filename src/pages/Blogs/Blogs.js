@@ -8,7 +8,9 @@ const Blogs = () => {
   const { data: questions = [], isloading } = useQuery({
     queryKey: ["questions"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/questions");
+      const res = await fetch(
+        "https://gobuysellphone-server.vercel.app/questions"
+      );
       const data = await res.json();
       return data;
     },

@@ -13,7 +13,7 @@ const MyOrders = () => {
     queryKey: ["buyerorders", user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/buyerorders?email=${user?.email}`
+        `https://gobuysellphone-server.vercel.app/buyerorders?email=${user?.email}`
       );
       const data = await res.json();
       return data;
@@ -58,7 +58,6 @@ const MyOrders = () => {
                   </div>
                 </td>
                 <td>
-                  {" "}
                   <div className="font-bold">{order.product_name}</div>
                 </td>
                 <td>{order.price}</td>

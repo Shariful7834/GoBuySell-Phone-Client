@@ -10,7 +10,9 @@ const AdminPage = () => {
   } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/users?userrole`);
+      const res = await fetch(
+        `https://gobuysellphone-server.vercel.app/users?userrole`
+      );
       const data = await res.json();
       return data;
     },
@@ -29,7 +31,7 @@ const AdminPage = () => {
   // make admin for dashboard
 
   const handleMakeAdmin = (id) => {
-    fetch(`http://localhost:5000/users/admin/${id}`, {
+    fetch(`https://gobuysellphone-server.vercel.app/users/admin/${id}`, {
       method: "PUT",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -45,7 +47,7 @@ const AdminPage = () => {
   };
 
   const verifyseller = (id) => {
-    fetch(`http://localhost:5000/users/seller/${id}`, {
+    fetch(`https://gobuysellphone-server.vercel.app/users/seller/${id}`, {
       method: "PUT",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -61,7 +63,7 @@ const AdminPage = () => {
   };
 
   const deleteHandler = (user) => {
-    fetch(`http://localhost:5000/users/${user._id}`, {
+    fetch(`https://gobuysellphone-server.vercel.app/users/${user._id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,

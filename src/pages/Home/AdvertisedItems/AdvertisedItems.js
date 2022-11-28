@@ -9,7 +9,9 @@ const AdvertisedItems = () => {
   const { data: advertisements = [], isLoading } = useQuery({
     queryKey: ["advertises"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/advertisements");
+      const res = await fetch(
+        "https://gobuysellphone-server.vercel.app/advertisements"
+      );
       const data = await res.json();
       return data;
     },

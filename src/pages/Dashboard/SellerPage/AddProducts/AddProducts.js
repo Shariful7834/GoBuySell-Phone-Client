@@ -46,9 +46,9 @@ const AddProducts = () => {
             Phone_category: data.Phone_category,
             Resale_price: data.Resale_price,
             details: data.details,
-            image: imgData.data.url,
+            image_url: imgData.data.url,
           };
-          fetch("http://localhost:5000/addproducts", {
+          fetch("https://gobuysellphone-server.vercel.app/addproducts", {
             method: "POST",
             headers: {
               "content-type": "application/json",

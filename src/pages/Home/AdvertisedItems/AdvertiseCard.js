@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const AdvertiseCard = ({ ads, SetProductInfo }) => {
   const {
-    image,
+    image_url,
     product_name,
     Resale_price,
     condition,
@@ -14,7 +14,7 @@ const AdvertiseCard = ({ ads, SetProductInfo }) => {
   return (
     <div className="card card-compact w-96 bg-base-100 shadow-xl p-2 rounded">
       <figure>
-        <img className="rounded" src={image} alt="Shoes" />
+        <img className="rounded" src={image_url} alt="Shoes" />
       </figure>
       <div className="card-body">
         <h2 className="card-title text-3xl">{product_name}</h2>
@@ -40,7 +40,7 @@ const AdvertiseCard = ({ ads, SetProductInfo }) => {
             onClick={() => SetProductInfo(ads)}
             className="btn btn-accent  text-white mt-16"
           >
-            Booking now
+            Purchase
           </label>
         </div>
       </div>

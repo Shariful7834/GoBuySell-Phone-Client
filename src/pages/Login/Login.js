@@ -76,7 +76,7 @@ const Login = () => {
 
   // const saveUser = (name, email, userrole) => {
   //   const user = { name, email, userrole };
-  //   fetch("http://localhost:5000/users", {
+  //   fetch("https://gobuysellphone-server.vercel.app/users", {
   //     method: "POST",
   //     headers: {
   //       "content-type": "application/json",

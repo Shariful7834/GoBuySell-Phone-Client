@@ -44,7 +44,9 @@ export const router = createBrowserRouter([
       {
         path: "/categoryUsed/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/categoryUsed/${params.id}`),
+          fetch(
+            `https://gobuysellphone-server.vercel.app/categoryUsed/${params.id}`
+          ),
         element: (
           <PrivateRouter>
             <CategoryUsed></CategoryUsed>
@@ -126,7 +128,9 @@ export const router = createBrowserRouter([
           </PrivateRouter>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/buyerorders/${params.id}`),
+          fetch(
+            `https://gobuysellphone-server.vercel.app/buyerorders/${params.id}`
+          ),
       },
     ],
   },

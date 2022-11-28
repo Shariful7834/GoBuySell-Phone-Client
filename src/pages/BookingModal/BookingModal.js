@@ -25,9 +25,10 @@ const BookingModal = ({ productInfo, SetProductInfo }) => {
       price: price,
       email: user?.email,
     };
+    
     console.log(buyerBookingItem);
 
-    fetch("http://localhost:5000/buyerBookingItems", {
+    fetch("https://gobuysellphone-server.vercel.app/buyerBookingItems", {
       method: "POST",
       headers: {
         "content-type": "application/json",

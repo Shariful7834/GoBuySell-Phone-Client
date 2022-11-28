@@ -11,7 +11,7 @@ const MyProducts = () => {
   const [advertisements, setAdvertisements] = useState([]);
   const {
     product_name,
-    image,
+    image_url,
     Resale_price,
     condition,
     Location,
@@ -28,7 +28,7 @@ const MyProducts = () => {
     queryKey: ["myproducts", user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/myproducts?email=${user?.email}`
+        `https://gobuysellphone-server.vercel.app/myproducts?email=${user?.email}`
       );
       const data = await res.json();
       return data;
@@ -41,12 +41,15 @@ const MyProducts = () => {
     setDeletingProduct(null);
   };
   const deleteHandler = (product) => {
-    fetch(`http://localhost:5000/manageproducts/${product._id}`, {
-      method: "DELETE",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://gobuysellphone-server.vercel.app/manageproducts/${product._id}`,
+      {
+        method: "DELETE",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount > 0) {
@@ -59,14 +62,17 @@ const MyProducts = () => {
 
   // Update
   const handleUpdate = (product) => {
-    fetch(`http://localhost:5000/manageproducts/${product._id}`, {
-      method: "PATCH",
-      Headers: {
-        "Content-Type": "application/json",
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify({ status: "Sold" }),
-    })
+    fetch(
+      `https://gobuysellphone-server.vercel.app/manageproducts/${product._id}`,
+      {
+        method: "PATCH",
+        Headers: {
+          "Content-Type": "application/json",
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+        body: JSON.stringify({ status: "Sold" }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -92,14 +98,14 @@ const MyProducts = () => {
   const handleAdvertise = () => {
     const advertisements = {
       product_name,
-      image,
+      image_url,
       condition,
       Resale_price,
       Location,
       price,
     };
 
-    fetch("http://localhost:5000/advertisements", {
+    fetch("https://gobuysellphone-server.vercel.app/advertisements", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -141,7 +147,7 @@ const MyProducts = () => {
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
                         <img
-                          src={product.image}
+                          src={product.image_url}
                           alt="Avatar Tailwind CSS Component"
                         />
                       </div>
