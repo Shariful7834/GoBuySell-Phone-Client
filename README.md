@@ -8,7 +8,7 @@
 ## Admin Info
 ```
 Email: mdislam@gmail.com
-Password: Mislam@gmail.com
+Password: Mdislam@gmail.com
 ```
 ## Website Features
 - Dynamic website
