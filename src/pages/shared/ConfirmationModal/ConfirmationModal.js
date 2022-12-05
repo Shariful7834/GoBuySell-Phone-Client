@@ -6,7 +6,7 @@ const ConfirmationModal = ({
   closeModal,
   successAction,
   modalData,
-  advertise,
+  ActionBtn,
 }) => {
   return (
     <div>
@@ -21,7 +21,7 @@ const ConfirmationModal = ({
               htmlFor="ConfirmationModal"
               className="btn btn-primary"
             >
-              {advertise}
+              {ActionBtn}
             </label>
             <label
               onClick={closeModal}

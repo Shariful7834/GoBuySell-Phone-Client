@@ -18,7 +18,7 @@ const MyProducts = () => {
     details,
     price,
   } = advertisements;
-  console.log(product_name, condition, details);
+  // console.log(product_name, condition, details);
   const { user } = useContext(AuthContext);
   const {
     data: myproducts = [],
@@ -70,7 +70,7 @@ const MyProducts = () => {
           "Content-Type": "application/json",
           authorization: `bearer ${localStorage.getItem("accessToken")}`,
         },
-        body: JSON.stringify({ status: "Sold" }),
+        body: JSON.stringify({ verify: "Sold" }),
       }
     )
       .then((res) => res.json())
@@ -183,13 +183,13 @@ const MyProducts = () => {
                       className="btn btn-success btn-xs"
                       onClick={() => setAdvertisements(product)}
                     >
-                      Advertise
+                      Post Ads
                     </label>
                   </th>
                 )}
                 {product.advertisement && (
                   <span className="text-green-600 font-bold" disabled>
-                    Advertised
+                    Already Posted
                   </span>
                 )}
               </tr>
@@ -203,6 +203,7 @@ const MyProducts = () => {
           message={`if you delete, ${deletingProduct.product_name}  you cannot be able to undone`}
           closeModal={closeModal}
           successAction={deleteHandler}
+          ActionBtn={`Delete`}
           modalData={deletingProduct}
         ></ConfirmationModal>
       )}
@@ -214,7 +215,7 @@ const MyProducts = () => {
           closeModal={closeModal}
           successAction={handleAdvertise}
           modalData={advertisements}
-          advertise={`Advertise`}
+          ActionBtn={`Advertise`}
         ></ConfirmationModal>
       )}
     </div>

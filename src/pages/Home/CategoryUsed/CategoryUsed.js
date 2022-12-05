@@ -18,7 +18,7 @@ const CategoryUsed = () => {
   return (
     <div className="container mx-auto mt-8 min-h-full">
       <h1 className="text-4xl text-center mb-10">
-        {categoryPhones.length} Book the selected second-hand phones
+        Book the selected second-hand phones
       </h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-6">
