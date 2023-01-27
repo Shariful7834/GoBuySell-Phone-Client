@@ -5,6 +5,7 @@ import image from "../../Assets/question.svg";
 import SingleQuestions from "./SingleQuestions";
 
 const Blogs = () => {
+  
   const { data: questions = [], isloading } = useQuery({
     queryKey: ["questions"],
     queryFn: async () => {

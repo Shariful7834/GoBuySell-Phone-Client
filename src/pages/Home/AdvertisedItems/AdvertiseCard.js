@@ -25,7 +25,7 @@ const AdvertiseCard = ({ ads, SetProductInfo }) => {
               Original_price: ${price}
             </p>
             <p className="text-xl text-left text-black-600 ">
-              Resel_Price ${Resale_price}
+              Resale_Price ${Resale_price}
             </p>
             <p className="text-xl text-left text-black-600  ">
               Location: {Location}
