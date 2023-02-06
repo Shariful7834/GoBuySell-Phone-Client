@@ -35,7 +35,7 @@ const CategoryPhone = ({ category, SetProductInfo }) => {
             </p>
             <p className="text-lg font-semibold">Seller Name: {Seller_Name}</p>
             <p className="text-lg font-semibold">
-              Total years of use: {used_year}
+              Total year of uses: {used_year}
             </p>
             <p className="text-lg font-semibold">Posted_Date: {Posted_Date}</p>
           </div>
