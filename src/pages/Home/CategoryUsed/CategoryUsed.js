@@ -17,7 +17,7 @@ const CategoryUsed = () => {
 
   return (
     <div className="container mx-auto mt-8 min-h-full">
-      <h1 className="text-4xl text-center mb-10">
+      <h1 className="text-4xl text-center mb-10 uppercase">
         Book the selected second-hand phones
       </h1>
 
