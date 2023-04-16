@@ -22,7 +22,7 @@ const Payment = () => {
       <div className="card w-96 md:w-[600px] bg-base-100 shadow-xl">
         <div className="p-8 flex justify-between">
           <div>
-            <h2 className="card-title text-2xl">Pay for {product_name}</h2>
+            <h2 className="card-title text-2xl">Pay for the {product_name}</h2>
 
             <p>
               <span className="font-semibold">Total cost:</span> ${price}
